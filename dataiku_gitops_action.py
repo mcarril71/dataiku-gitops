@@ -151,13 +151,13 @@ def main():
                 # Replace bundle import/export with deployment
        #         deploy(DATAIKU_INFRA_ID_PROD)
                 
-            # Run tests on Prod instance
-            if run_tests(PYTHON_SCRIPT, DATAIKU_INSTANCE_PROD_URL, DATAIKU_API_TOKEN_PROD, DATAIKU_PROJECT_KEY):
-                print("Deployment and tests successful in production.")
-            else:
-                print("Tests failed in production.")
-                # Note: With this approach, rollback needs to be handled through Dataiku's deployment feature
-                sys.exit(1)
+        # Run tests on Prod instance
+        if run_tests(PYTHON_SCRIPT, DATAIKU_INSTANCE_PROD_URL, DATAIKU_API_TOKEN_PROD, DATAIKU_PROJECT_KEY):
+            print("Deployment and tests successful in production.")
+        else:
+            print("Tests failed in production.")
+            # Note: With this approach, rollback needs to be handled through Dataiku's deployment feature
+            sys.exit(1)
         #else:
         #    print("Tests failed in staging.")
         #    sys.exit(1)
