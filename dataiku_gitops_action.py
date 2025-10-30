@@ -107,6 +107,7 @@ def get_git_sha():
 
 def deploy(infra_id):
     """Deploy to production using bundle and deployer."""
+    print(f"Deployment started ...")
     try:
         commit_id = get_git_sha()
         bundle_id = generate_bundle_id(commit_id)
@@ -135,13 +136,14 @@ def deploy(infra_id):
 
 def main():
     try:
+        print(f"Debug tring with main...")
         dataiku_sha = get_dataiku_latest_commit(client_dev, DATAIKU_PROJECT_KEY)
         git_sha = get_git_sha()
-        if dataiku_sha != git_sha:
-            print(f"Dataiku commit SHA ({dataiku_sha}) doesn't match Git SHA ({git_sha})")
-            sync_dataiku_to_git(client_dev, DATAIKU_PROJECT_KEY)
-            print("Pushed Dataiku changes to Git. Restarting process.")
-            sys.exit(0)
+        #if dataiku_sha != git_sha:
+         #   print(f"Dataiku commit SHA ({dataiku_sha}) doesn't match Git SHA ({git_sha})")
+         #   sync_dataiku_to_git(client_dev, DATAIKU_PROJECT_KEY)
+         #   print("Pushed Dataiku changes to Git. Restarting process.")
+         #   sys.exit(0)
 
         deploy(DATAIKU_INFRA_ID_STAGING)
 
